@@ -35,6 +35,12 @@ public class UserService {
         }
     }
 
+    /**
+     * Validate if password entered by the user contain at least 1 alphabet (a-z or A-Z), 1 number (0-9)
+     * and 1 special character (any character other than a-z, A-Z and 0-9)
+     * @param password
+     * @return
+     */
     public boolean isPasswordStrong(String password) {
         return passwordValidator.validate(password);
     }

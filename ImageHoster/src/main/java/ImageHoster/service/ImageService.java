@@ -6,8 +6,6 @@ import ImageHoster.repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -28,8 +26,8 @@ public class ImageService {
 
 
     //The method calls the getImageByTitle() method in the Repository and passes the title of the image to be fetched
-    public Image getImageByTitle(String imageId, String title) {
-        return imageRepository.getImageByTitle(imageId, title);
+    public Image getImageByIdAndTitle(String imageId, String title) {
+        return imageRepository.getImageByIdAndTitle(imageId, title);
     }
 
     //The method calls the getImage() method in the Repository and passes the id of the image to be fetched
@@ -47,10 +45,12 @@ public class ImageService {
         imageRepository.deleteImage(imageId);
     }
 
+    //The method calls the addImageComment() method in the Repository and passes the Comment details to be persisted in the database
     public void addImageComment(Comment comment) {
         imageRepository.addImageComment(comment);
     }
 
+    //The method calls the getImageComments() method in the Repository and passes the Image id and title to fetch list of comments on that image from the database
     public List<Comment> getImageComments(String imageId, String title) {
         return imageRepository.getImageComments(imageId, title);
     }

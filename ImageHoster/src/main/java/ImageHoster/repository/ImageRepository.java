@@ -48,10 +48,10 @@ public class ImageRepository {
     }
 
     //The method creates an instance of EntityManager
-    //Executes JPQL query to fetch the image from the database with corresponding title
+    //Executes JPQL query to fetch the image from the database with corresponding title and id
     //Returns the image in case the image is found in the database
     //Returns null if no image is found in the database
-    public Image getImageByTitle(String imageId, String title) {
+    public Image getImageByIdAndTitle(String imageId, String title) {
         EntityManager em = emf.createEntityManager();
         try {
             TypedQuery<Image> typedQuery = em.createQuery("SELECT i from Image i where i.title =:title and i.id =:imageId", Image.class).setParameter("title", title).setParameter("imageId", Integer.valueOf(imageId));
@@ -111,6 +111,11 @@ public class ImageRepository {
         }
     }
 
+    //The method receives the Comment object to be updated in the database
+    //Creates an instance of EntityManager
+    //Starts a transaction
+    //The transaction is committed if it is successful
+    //The transaction is rolled back in case of unsuccessful transaction
     public void addImageComment(Comment comment) {
         EntityManager em = emf.createEntityManager();
         EntityTransaction transaction = em.getTransaction();
@@ -124,6 +129,9 @@ public class ImageRepository {
         }
     }
 
+    //The method creates an instance of EntityManager
+    //Executes JPQL query to fetch all comments from the database with corresponding image id and title
+    //Returns the list of comments fetched from the database
     public List<Comment> getImageComments(String imageId, String title) {
         EntityManager em = emf.createEntityManager();
         try {
